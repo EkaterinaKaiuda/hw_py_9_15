@@ -63,7 +63,7 @@ class StudentRegFormPage:
     def click_submit_button(self):
         browser.element('#submit').click()
 
-    def shoud_registered_student_with(self, full_name, email, gender, mobile, date_of_birth, subjects, hobbies, picture, address, state_and_city):
+    def check_data_in_form_registration(self, full_name, email, gender, mobile, date_of_birth, subjects, hobbies, picture, address, state_and_city):
         browser.element('.table').all('td').should(have.texts(
             'Student Name', full_name,
             'Student Email', email,

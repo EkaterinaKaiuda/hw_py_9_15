@@ -21,7 +21,7 @@ def test_student_reg_form():
     registration_page.fill_city('Lucknow')
     registration_page.click_submit_button()
 
-    registration_page.shoud_registered_student_with('John Dou', 'JohnDou@test.com', 'Male', '1234567890',
+    registration_page.check_data_in_form_registration('John Dou', 'JohnDou@test.com', 'Male', '1234567890',
                                                     '13 April,1985',
                                                     'Maths', 'Sport', 'guru.png', 'Some Street, some house',
                                                     'Uttar Pradesh Lucknow')
