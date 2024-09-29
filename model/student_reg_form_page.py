@@ -28,8 +28,8 @@ class StudentRegFormPage:
         browser.element('#userNumber').should(be.blank).type(value)
     def fill_date_of_birth(self, day, month, year):
         browser.element('#dateOfBirthInput').click()
-        browser.element('.react-datepicker__month-select').click().element(f'[value = "{month}"]').click()
-        browser.element('.react-datepicker__year-select').click().element(f'[value = "{year}"]').click()
+        browser.element('.react-datepicker__month-select').type(month)
+        browser.element('.react-datepicker__year-select').type(year)
         browser.element(f'.react-datepicker__day--0{day}').click()
 
     def scroll_page_to_the_end(self):
@@ -63,19 +63,35 @@ class StudentRegFormPage:
     def click_submit_button(self):
         browser.element('#submit').click()
 
-    def shoud_registered_student_with(self, full_name, email, gender, mobile, date_of_birth, subjects, hobbies, picture, address, state_and_city):
+    def fill_up_the_registration_form(self, student):
+        self.fill_first_name(student.first_name)
+        self.fill_last_name(student.last_name)
+        self.fill_email(student.email)
+        self.select_gender(student.gender)
+        self.fill_number(student.mobile)
+        self.fill_date_of_birth(student.day, student.month, student.year)
+        self.scroll_page_to_the_end()
+        self.fill_subject(student.subjects)
+        self.select_hobby()
+        self.upload_photo()
+        self.fill_current_address(student.address)
+        self.fill_state(student.state)
+        self.fill_city(student.city)
+        self.click_submit_button()
+
+    def check_data_in_form_registration(self, student):
         browser.element('.table').all('td').should(have.texts(
-            'Student Name', full_name,
-            'Student Email', email,
-            'Gender', gender,
-            'Mobile', mobile,
-            'Date of Birth', date_of_birth,
-            'Subjects', subjects,
-            'Hobbies', hobbies,
-            'Picture', picture,
-            'Address', address,
-            'State and City', state_and_city
-        )
+            'Student Name', student.first_name + ' ' + student.last_name,
+            'Student Email', student.email,
+            'Gender', student.gender,
+            'Mobile', student.mobile,
+            'Date of Birth', student.day + ' ' + student.month + ',' + student.year,
+            'Subjects', student.subjects,
+            'Hobbies', student.hobbies,
+            'Picture', student.picture,
+            'Address', student.address,
+            'State and City', student.state + ' ' + student.city
+            )
         )
 
     def close_table(self):
