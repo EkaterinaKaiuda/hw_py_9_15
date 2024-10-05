@@ -1,6 +1,6 @@
-pytest~=8.3.2
-selene>=2.0.0rc7
+pytest
+selene
 allure-pytest
-python-dotenv~=1.0.1
-selenium~=4.24.0
-webdriver-manager~=3.8.6
+python-dotenv
+selenium
+webdriver-manager
